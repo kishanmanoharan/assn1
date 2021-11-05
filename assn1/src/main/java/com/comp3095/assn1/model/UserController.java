@@ -31,7 +31,6 @@ public class UserController {
             return "account/signin";
         }
         else {
-//            User user = new User(model.getAttribute("email").toString(), model.getAttribute("pass").toString());
             User dbUser = userRepository.findUserByUsernameAndPassword(user.getUsername(), user.getPassword());
             if (dbUser != null) {
                 return "redirect:/" + dbUser.getId();
@@ -42,7 +41,6 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public String getHome(@PathVariable("userId") Integer userId, Model model) {
-
         if (userRepository.existsById(userId)) {
             User user = userRepository.getUserById(userId);
             model.addAttribute("user", user);
@@ -72,16 +70,21 @@ public class UserController {
     @GetMapping("/{userId}/newrecipe")
     public String getNewRecipe(@PathVariable("userId") Integer userId, Model model) {
         model.addAttribute("recipe", new Recipe());
-        return "account/home";
+        model.addAttribute("userId", userId);
+        return "recipe/new";
     }
     @PostMapping("/{userId}/newrecipe")
     public String postNewRecipe(@PathVariable("userId") Integer userId, Recipe recipe, BindingResult result) {
         if (result.hasErrors()) {
-            return "/" + userId + "/newrecipe";
+            return "recipe/new";
         }
         else {
+            User user = userRepository.getUserById(userId);
+            if (user != null) {
+                recipe.setUser(user);
+            }
             recipeRepository.save(recipe);
-            return "/" + userId;
+            return "redirect:/" + user.getId();
         }
     }
 

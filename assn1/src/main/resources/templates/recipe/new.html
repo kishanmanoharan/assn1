@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <main class="form-signin align-middle">
-        <form th:action="@{user.id.toString() + '/newrecipe'}" th:object="${recipe}" method="post">
+        <form th:action="@{'/' + ${userId} + '/newrecipe'}" th:object="${recipe}" method="post">
             <h1 class="h3 mb-3 fw-normal m-2">New Recipe</h1>
             <div class="input-group p-1">
                 <span class="input-group-text" id="name-label">Name</span>
@@ -33,7 +33,7 @@
 <!--            </div>-->
             <button class="w-50 btn btn-primary m-1" type="submit" value="Submit">Add</button>
         </form>
-        <!--        <a th:href="@{/signup}"><button class="w-50 btn btn-lg btn-secondary m-1" href="/signup">Create Account</button></a>-->
+    <a th:href="@{'/' + ${userId}}"><button class="w-50 btn btn-secondary m-1" href="/signup">Cancel</button></a>
     </main>
 </div>
 
