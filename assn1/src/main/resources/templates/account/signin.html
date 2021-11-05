@@ -12,8 +12,8 @@
         <form th:action="@{/signin}" th:object="${user}" method="post">
             <h1 class="h3 mb-3 fw-normal m-2">Recipes App</h1>
             <div class="input-group m-1">
-                <span class="input-group-text" id="basic-addon1">Email</span>
-                <input type="text" class="form-control" id="username" placeholder="name@example.com" th:field="*{username}" name="username" aria-describedby="basic-addon1">
+                <span class="input-group-text" id="basic-addon1">Username</span>
+                <input type="text" class="form-control" id="username" placeholder="username" th:field="*{username}" name="username" aria-describedby="basic-addon1">
             </div>
             <div class="input-group m-1">
                 <span class="input-group-text" id="basic-addon2">Password</span>

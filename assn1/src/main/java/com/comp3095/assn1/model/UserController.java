@@ -48,7 +48,7 @@ public class UserController {
             model.addAttribute("recipes", recipes);
             return "account/home";
         }
-        return "account/signin";
+        return "redirect:/signin";
     }
 
     @GetMapping("/signup")
@@ -86,6 +86,18 @@ public class UserController {
             recipeRepository.save(recipe);
             return "redirect:/" + user.getId();
         }
+    }
+    @GetMapping("/{userId}/view/{recipeId}")
+    public String getNewRecipe(@PathVariable("userId") Integer userId, @PathVariable("recipeId") Integer recipeId, Model model) {
+        if (recipeRepository.existsById(recipeId) && userRepository.existsById(userId)) {
+            Recipe recipe = recipeRepository.getRecipesById(recipeId);
+            model.addAttribute("recipe", recipe);
+            User user = userRepository.getUserById(userId);
+            model.addAttribute("recipe", user);
+        }
+
+
+        return "recipe/new";
     }
 
     @GetMapping("/info")
