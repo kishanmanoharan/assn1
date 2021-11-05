@@ -16,21 +16,21 @@
                 <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{name}" name="name" aria-describedby="name-addon">
                 <!--                <label for="name">Name</label>-->
             </div>
-<!--            <div class="input-group p-1">-->
-<!--                <span class="input-group-text" id="date-addon">Date</span>-->
-<!--                <input type="date" field="*{date}" name="date" class="form-control" id="date" placeholder="Date" aria-describedby="date-addon"/>-->
-<!--                &lt;!&ndash;                <label for="Date">Date</label>&ndash;&gt;-->
-<!--            </div>-->
-<!--            <div class="input-group p-1">-->
-<!--                <span class="input-group-text">Ingredients</span>-->
-<!--                <textarea class="form-control" name="ingredients" id="ingredients" field="*{ingredients}" aria-label="Ingredients"></textarea>-->
-<!--                &lt;!&ndash;                <label for="ingredients">Ingredients</label>&ndash;&gt;-->
-<!--            </div>-->
-<!--            <div class="input-group p-1">-->
-<!--                <span class="input-group-text">Directions</span>-->
-<!--                <textarea class="form-control" name="directions" id="directions" field="*{directions}" aria-label="Directions"></textarea>-->
-<!--                &lt;!&ndash;                <label for="directions">Directions</label>&ndash;&gt;-->
-<!--            </div>-->
+            <div class="input-group p-1">
+                <span class="input-group-text" id="date-addon">Date</span>
+                <input type="date" field="*{date}" name="date" class="form-control" id="date" placeholder="Date" aria-describedby="date-addon"/>
+                <!--                <label for="Date">Date</label>-->
+            </div>
+            <div class="input-group p-1">
+                <span class="input-group-text">Ingredients</span>
+                <textarea class="form-control" name="ingredients" id="ingredients" field="*{ingredients}" aria-label="Ingredients"></textarea>
+                <!--                <label for="ingredients">Ingredients</label>-->
+            </div>
+            <div class="input-group p-1">
+                <span class="input-group-text">Directions</span>
+                <textarea class="form-control" name="directions" id="directions" field="*{directions}" aria-label="Directions"></textarea>
+                <!--                <label for="directions">Directions</label>-->
+            </div>
             <button class="w-50 btn btn-primary m-1" type="submit" value="Submit">Add</button>
         </form>
     <a th:href="@{'/' + ${userId}}"><button class="w-50 btn btn-secondary m-1" href="/signup">Cancel</button></a>
