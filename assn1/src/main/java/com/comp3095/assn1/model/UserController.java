@@ -71,7 +71,18 @@ public class UserController {
 
     @GetMapping("/{userId}/newrecipe")
     public String getNewRecipe(@PathVariable("userId") Integer userId, Model model) {
+        model.addAttribute("recipe", new Recipe());
         return "account/home";
+    }
+    @PostMapping("/{userId}/newrecipe")
+    public String postNewRecipe(@PathVariable("userId") Integer userId, Recipe recipe, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/" + userId + "/newrecipe";
+        }
+        else {
+            recipeRepository.save(recipe);
+            return "/" + userId;
+        }
     }
 
     @GetMapping("/info")
