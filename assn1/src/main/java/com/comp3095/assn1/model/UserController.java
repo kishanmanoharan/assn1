@@ -71,7 +71,7 @@ public class UserController {
 
     @GetMapping("/{userId}/newrecipe")
     public String getNewRecipe(@PathVariable("userId") Integer userId, Model model) {
-        return "account/home";h
+        return "account/home";
     }
 
     @GetMapping("/info")
