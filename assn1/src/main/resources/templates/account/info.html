@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INFO</title>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+<h1>INFO</h1>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>User</th>
+        <th>Pass</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td><p th:text="*{user.id}"></p></td>
+        <td><p th:text="*{user.username}"></p></td>
+        <td><p th:text="*{user.password}"></p></td>
+    </tr>
+</table>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+<!--        <th>Ingredients</th>-->
+<!--        <th>Directions</th>-->
+<!--        <th>User</th>-->
+    </tr>
+    <tr th:each="recipe : ${recipes}">
+        <td><p th:text="*{recipe.id}"></p></td>
+        <td><p th:text="*{recipe.name}"></p></td>
+<!--        <td><p th:text="*{recipe.ingredients}"></p></td>-->
+<!--        <td><p th:text="*{recipe.directions}"></p></td>-->
+<!--        <td><p th:text="*{recipe.date}"></p></td>-->
+<!--        <td><p th:text="*{recipe.user.id}"></p></td>-->
+    </tr>
+</table>
+</body>
+</html>

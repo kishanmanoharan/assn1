@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>User</th>
+        <th>Pass</th>
+    </tr>
+    <tr th:object="${user}">
+        <td><p th:text="*{id}"></p></td>
+        <td><p th:text="*{username}"></p></td>
+        <td><p th:text="*{password}"></p></td>
+    </tr>
+</table>
+<h2>Recipes</h2>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="recipe : ${recipes}">
+        <td><p th:text="*{id}"></p></td>
+        <td><p th:text="*{name}"></p></td>
+<!--        <td><p th:text="*{user.date}"></p></td>-->
+    </tr>
+</table>
+<a th:href="@{/newrecipe}"><button class="w-50 btn btn btn-primary m-1" >New Recipe</button></a>
+
+
+</body>
+</html>
