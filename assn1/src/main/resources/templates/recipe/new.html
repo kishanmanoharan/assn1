@@ -18,7 +18,7 @@
 <div class="container my-3">
 <main class="form-signin align-middle">
     <form th:action="@{'/' + ${userId} + '/newrecipe'}" th:object="${recipe}" method="post">
-        <h1 class="h2 mb-3 fw-normal m-2">New Recipe</h1>
+        <h1 class="h2 mb-3 fw-normal my-2">New Recipe</h1>
         <div class="input-group p-1">
             <span class="input-group-text" id="name-label">Name</span>
             <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{name}" name="name" aria-describedby="name-addon">
@@ -37,7 +37,7 @@
         </div>
         <div class="align-center mx-auto text-center">
             <button class="btn btn-lg btn-primary m-1" type="submit" value="Submit">Add</button>
-            <a th:href="@{'/' + ${userId}}"><button class="btn btn-lg btn-secondary m-1" href="/signup">Cancel</button></a>
+            <a th:href="@{'/' + ${userId}}"><button class="btn btn-lg btn-secondary m-1" type="button" name="cancel" value="cancel">Cancel</button></a>
         </div>
     </form>
 </main>

@@ -28,6 +28,7 @@
             <th>Directions</th>
             <th>Action</th>
             <th>Favourite</th>
+<!--            <th>Meal</th>-->
         </tr>
         <tr th:each="recipe : ${favourites}">
             <td><p th:text="*{recipe.name}"></p></td>
@@ -39,6 +40,9 @@
                     <button class="btn btn-danger m-1" type="submit">Remove</button>
                 </form>
             </td>
+<!--            <td>-->
+<!--                <a th:href="@{'/' + ${user.id.toString()} + '/newmeal/' + ${recipe.id}}"><button class="btn btn-warning m-1" >Add</button></a>-->
+<!--            </td>-->
         </tr>
     </table>
     <br />

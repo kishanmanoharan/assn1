@@ -1,7 +1,11 @@
 package com.comp3095.assn1.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.sql.Time;
+import java.text.DateFormat;
+import java.time.DateTimeException;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -12,33 +16,23 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "date")
-    private Date date;
 
-    @Column(name = "time")
-    private Time time;
+    private String date;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private int recipeId;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "recipe_id", nullable = false)
-    private Recipe recipe;
 
     public Meal() {};
 
-    public Meal(Date date, Time time, User user, Recipe recipe) {
+    public Meal(String date, User user, Integer recipeId) {
         this.date = date;
-        this.time = time;
-        this.user = user;
-        this.recipe = recipe;
+        this.recipeId = recipeId;
     }
 
     public Integer getId() { return id; }
-    public Date getDate() { return date; }
-    public Time getTime() { return time; }
-    public User getUser() { return user; }
-    public Recipe getRecipe() { return recipe; }
+    public String getDate() { return date; }
+    public Integer getRecipe() { return recipeId; }
 
+    public void setDate(String date) { this.date = date; }
+    public void setRecipe(Integer recipe) { this.recipeId = recipeId; }
 }

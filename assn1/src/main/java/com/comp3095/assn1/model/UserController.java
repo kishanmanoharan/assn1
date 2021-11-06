@@ -15,10 +15,12 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final RecipeRepository recipeRepository;
+    private final MealRepository mealRepository;
 
-    public UserController(UserRepository userRepository, RecipeRepository recipeRepository) {
+    public UserController(UserRepository userRepository, RecipeRepository recipeRepository, MealRepository mealRepository) {
         this.userRepository = userRepository;
         this.recipeRepository = recipeRepository;
+        this.mealRepository = mealRepository;
     }
 
     @Autowired
@@ -139,6 +141,47 @@ public class UserController {
         }
         return "redirect:/" + userId.toString();
     }
+
+//    @GetMapping("/{userId}/newmeal/{recipeId}")
+//    public String getNewMeal(@PathVariable("userId") Integer userId, @PathVariable("recipeId") Integer recipeId, User user, Recipe recipe, Model model) {
+//        user = userRepository.getUserById(userId);
+//        recipe = recipeRepository.getRecipesById(recipeId);
+//        model.addAttribute("recipe", recipe);
+//        model.addAttribute("user", user);
+//        model.addAttribute("userId", userId);
+//        model.addAttribute("meal", new Meal());
+//        return "meal/new";
+//    }
+//
+//    @PostMapping("/{userId}/newmeal/{recipeId}")
+//    public String postNewMeal(@PathVariable("userId") Integer userId, @PathVariable("recipeId") Integer recipeId, Meal meal, User user, Recipe recipe, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "recipe/new";
+//        }
+//        else {
+//            user = userRepository.getUserById(userId);
+//            recipe = recipeRepository.getRecipesById(recipeId);
+//            if (user != null && recipe != null) {
+//                meal.setRecipe(recipe.getId());
+//                user.addMeal(meal);
+//                userRepository.save(user);
+//                return "redirect:/" + userId.toString();
+//            }
+//            return "meal/new";
+//        }
+//    }
+//
+//    @RequestMapping(value = "/{userId}/deletemeal/{mealId}", method = RequestMethod.POST)
+//    public String postDeleteMeal(@PathVariable("userId") Integer userId, @PathVariable("mealId") Integer mealId, User user, Model model) {
+//        user = userRepository.getUserById(userId);
+//
+//        if (user != null){
+////            Meal meal = user.con
+////            user.deleteMeal(meal);
+//            userRepository.save(user);
+//        }
+//        return "redirect:/" + userId.toString();
+//    }
 
     @RequestMapping("/{userId}/search")
     public String getSearchRecipe(@PathVariable("userId") Integer userId, User user, @Param("search") String search, Model model) {
