@@ -164,10 +164,11 @@ public class UserController {
         return "redirect:/" + userId.toString();
      }
 
-    @GetMapping("/info")
-    public String getInfo(Model model) {
-        model.addAttribute("users", userRepository.findAll());
-        model.addAttribute("recipes", recipeRepository.findAll());
-        return "account/info";
-    }
+//    Used ONLY for testing
+//    @GetMapping("/info")
+//    public String getInfo(Model model) {
+//        model.addAttribute("users", userRepository.findAll());
+//        model.addAttribute("recipes", recipeRepository.findAll());
+//        return "account/info";
+//    }
 }

@@ -16,26 +16,4 @@ public class Assn1Application {
 		SpringApplication.run(Assn1Application.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner mappingDemo(UserRepository userRepository,
-//										 RecipeRepository recipeRepository) {
-//		return args -> {
-//
-//			// create a new user
-//			User user = new User("test", "test");
-//
-//			// save the user
-//			userRepository.save(user);
-//
-//			// create and save new recipes
-//			recipeRepository.save(new Recipe("Introduction", user));
-//			recipeRepository.save(new Recipe("Java 8", user));
-//			recipeRepository.save(new Recipe("Concurrency", user));
-//
-//			userRepository.findAll();
-//			recipeRepository.findAll();
-//		};
-//	}
-
-
 }
