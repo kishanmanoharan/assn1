@@ -16,6 +16,7 @@
     </div>
 </nav>
 <div class="container my-3">
+    <h2>Search public recipes!</h2>
     <form th:action="@{'/' + ${userId} + '/search'}" method="get">
         <div class="input-group">
             <input type="text" id="search" placeholder="Search" name="search" class="form-control m-1" th:value="${search}"/>

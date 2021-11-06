@@ -15,6 +15,6 @@ public class RecipeService {
         if (search != null) {
             return recipeRepository.search(search);
         }
-        return (List<Recipe>) recipeRepository.findAll();
+        return (List<Recipe>) recipeRepository.findAllByShare(true);
     }
 }

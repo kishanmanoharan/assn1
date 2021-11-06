@@ -20,8 +20,10 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     List<Recipe> findByNameContaining(String containing);
 
-    @Query("SELECT r FROM Recipe r WHERE r.name LIKE %?1%")
+    @Query("SELECT r FROM Recipe r WHERE r.share = true AND r.name LIKE %?1%")
     public List<Recipe> search(String search);
+
+    List<Recipe> findAllByShare(Boolean share);
 
     List<Recipe> findAllByNameIsLike(String name);
 

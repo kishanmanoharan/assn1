@@ -19,14 +19,18 @@ public class Recipe {
     @Column(name = "directions")
     private String directions;
 
+    @Column(name = "public")
+    private Boolean share = true;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Recipe() {};
 
-    public Recipe(String name, String ingredients, String directions, User user) {
+    public Recipe(String name, Boolean share, String ingredients, String directions, User user) {
         this.name = name;
+        this.share = share;
         this.user = user;
         this.ingredients = ingredients;
         this.directions = directions;
@@ -41,10 +45,12 @@ public class Recipe {
     public String getDirections() { return directions; }
     public String getIngredients() { return ingredients; }
     public User getUser() { return user; }
+    public Boolean getShare() { return share; }
 
     public void setName(String name) {
         this.name = name;
     }
+    public void setShare(Boolean share) { this.share = share; }
     public void setUser(User user) {
         this.user = user;
     }

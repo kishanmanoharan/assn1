@@ -43,12 +43,17 @@
     <table class="table">
         <tr>
             <th>Name</th>
+            <th>Public</th>
             <th>Ingredients</th>
             <th>Directions</th>
             <th>Action</th>
         </tr>
         <tr th:each="recipe : ${recipes}">
             <td><p th:text="*{recipe.name}"></p></td>
+            <td th:switch="${recipe.share}">
+                <p th:case="true">Yes</p>
+                <p th:case="false">No</p>
+            </td>
             <td><p th:text="*{recipe.ingredients}"></p></td>
             <td><p th:text="*{recipe.directions}"></p></td>
             <td>
