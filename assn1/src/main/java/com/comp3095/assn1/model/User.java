@@ -22,6 +22,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Recipe> recipes = new HashSet<Recipe>();
 
+    @ManyToMany()
+    private Set<Recipe> favourites = new HashSet<Recipe>();
 
     public User() {};
 
@@ -39,7 +41,8 @@ public class User {
     public String getPassword() {
         return password;
     }
-
+    public Set<Recipe> getFavourites() { return favourites; }
+    public Set<Recipe> getRecipes() { return recipes; }
 
     public void setUsername(String username) { this.username = username; }
     public void setPassword(String password) {
@@ -50,5 +53,11 @@ public class User {
     }
     public void addRecipes(Recipe recipe) { this.recipes.add(recipe); }
     public void deleteRecipes(Recipe recipe) { this.recipes.remove(recipe); }
+
+    public void setFavourites(Set<Recipe> favourites) { this.favourites = favourites; }
+    public void addFavourite(Recipe recipe) { this.favourites.add(recipe); }
+    public void deleteFavourite(Recipe recipe) { this.favourites.remove(recipe); }
+
+    public boolean containsFavourite(Recipe recipe) { return this.favourites.contains(recipe); }
 }
 

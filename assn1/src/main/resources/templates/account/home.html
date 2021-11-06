@@ -20,25 +20,28 @@
 
     <h1 th:text="${'Welcome ' + user.username + '!'}"></h1>
     <br />
-<!--    <h2>Your Favourite Recipes</h2>-->
-<!--    <table class="table">-->
-<!--        <tr>-->
-<!--            <th>Id</th>-->
-<!--            <th>Name</th>-->
-<!--            <th>Ingredients</th>-->
-<!--            <th>Directions</th>-->
-<!--            <th>User</th>-->
-<!--            <th>Action</th>-->
-<!--        </tr>-->
-<!--        <tr th:each="recipe : ${favourites}">-->
-<!--            <td><p th:text="*{recipe.id}"></p></td>-->
-<!--            <td><p th:text="*{recipe.name}"></p></td>-->
-<!--            <td><p th:text="*{recipe.ingredients}"></p></td>-->
-<!--            <td><p th:text="*{recipe.directions}"></p></td>-->
-<!--            <td><p th:text="*{recipe.user.username}"></p></td>-->
-<!--            <td><a th:href="@{'/' + ${user.id.toString()} + '/view/' + ${recipe.id}}"><button class="btn btn btn-primary m-1" >View</button></a></td>-->
-<!--        </tr>-->
-<!--    </table>-->
+    <h2>Your Favourite Recipes</h2>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Ingredients</th>
+            <th>Directions</th>
+            <th>Action</th>
+            <th>Favourite</th>
+        </tr>
+        <tr th:each="recipe : ${favourites}">
+            <td><p th:text="*{recipe.name}"></p></td>
+            <td><p th:text="*{recipe.ingredients}"></p></td>
+            <td><p th:text="*{recipe.directions}"></p></td>
+            <td><a th:href="@{'/' + ${user.id.toString()} + '/view/' + ${recipe.id}}"><button class="btn btn btn-primary m-1" >View</button></a></td>
+            <td>
+                <form th:action="@{'/' + ${user.id.toString()} + '/fav/' + ${recipe.id}}" method="post">
+                    <button class="btn btn-danger m-1" type="submit">Remove</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <br />
     <h2>Your Recipes</h2>
     <table class="table">
         <tr>

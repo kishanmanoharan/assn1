@@ -30,12 +30,19 @@
             <th>Ingredients</th>
             <th>Directions</th>
             <th>Action</th>
+            <th>Favourite</th>
         </tr>
         <tr th:each="recipe : ${recipes}">
             <td><p th:text="*{recipe.name}"></p></td>
             <td><p th:text="*{recipe.ingredients}"></p></td>
             <td><p th:text="*{recipe.directions}"></p></td>
             <td><a th:href="@{'/' + ${user.id.toString()} + '/view/' + ${recipe.id}}"><button class="btn btn btn-primary m-1" >View</button></a></td>
+            <td th:switch="${user.containsFavourite(recipe)}">
+                <form th:action="@{'/' + ${user.id.toString()} + '/fav/' + ${recipe.id}}" method="post">
+                    <button th:case="true" class="btn btn btn-danger m-1" type="submit" >Remove</button>
+                    <button th:case="false" class="btn btn btn-success m-1" type="submit">Add</button>
+                </form>
+            </td>
         </tr>
     </table>
 

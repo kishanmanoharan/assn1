@@ -50,6 +50,8 @@ public class UserController {
             model.addAttribute("user", user);
             List<Recipe> recipes = recipeRepository.findByUser(user);
             model.addAttribute("recipes", recipes);
+            Set<Recipe> favourites = user.getFavourites();
+            model.addAttribute("favourites", favourites);
             return "account/home";
         }
         return "redirect:/signin";
@@ -122,6 +124,13 @@ public class UserController {
             user = userRepository.getUserById(userId);
             recipe = recipeRepository.getRecipesById(recipeId);
             if (user.getId() ==  recipe.getUser().getId()) {
+                List<User> users = (List<User>) userRepository.findAll();
+                for (User dbUser:users) {
+                    if (dbUser.containsFavourite(recipe)) {
+                        dbUser.deleteFavourite(recipe);
+                        userRepository.save(dbUser);
+                    }
+                }
                 recipeRepository.delete(recipe);
                 user.deleteRecipes(recipe);
                 userRepository.save(user);
@@ -140,16 +149,19 @@ public class UserController {
         return "recipe/search";
     }
 
-//    @PostMapping("/{userId}/search")
-//    public String postSearchRecipe(@PathVariable("userId") Integer userId, String search, User user, Model model, BindingResult result){
-//        user = userRepository.getUserById(userId);
-//        model.addAttribute("recipes", recipeRepository.findByName(search));
-//        model.addAttribute("user", user);
-//        model.addAttribute("userId", userId);
-//        model.addAttribute("search", search);
-//        return "recipe/search";
-//    }
-
+    @RequestMapping(value = "/{userId}/fav/{recipeId}", method = RequestMethod.POST)
+    public String postToggleFavouriteRecipe(@PathVariable("userId") Integer userId, @PathVariable("recipeId") Integer recipeId, Recipe recipe, User user) {
+        user = userRepository.getUserById(userId);
+        recipe = recipeRepository.getRecipesById(recipeId);
+        if (user.containsFavourite(recipe)) {
+            user.deleteFavourite(recipe);
+        }
+        else {
+            user.addFavourite(recipe);
+        }
+        userRepository.save(user);
+        return "redirect:/" + userId.toString();
+     }
 
     @GetMapping("/info")
     public String getInfo(Model model) {
