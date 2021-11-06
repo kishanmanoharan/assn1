@@ -30,10 +30,9 @@
     <tr th:each="recipe : ${recipes}">
         <td><p th:text="*{recipe.id}"></p></td>
         <td><p th:text="*{recipe.name}"></p></td>
-<!--        <td><p th:text="*{recipe.ingredients}"></p></td>-->
-<!--        <td><p th:text="*{recipe.directions}"></p></td>-->
-<!--        <td><p th:text="*{recipe.date}"></p></td>-->
-<!--        <td><p th:text="*{recipe.user.id}"></p></td>-->
+        <td><p th:text="*{recipe.ingredients}"></p></td>
+        <td><p th:text="*{recipe.directions}"></p></td>
+        <td><p th:text="*{recipe.user.username}"></p></td>
     </tr>
 </table>
 </body>

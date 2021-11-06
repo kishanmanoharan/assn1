@@ -25,17 +25,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return userDetailsManager;
 
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); };
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.csrf().disable() .authorizeRequests().anyRequest()
-                .authenticated() .and()
-                .formLogin()
-                .and()
-                .rememberMe()
-                .and() .logout() .logoutUrl("/logout")
-                .logoutSuccessUrl("/login") .deleteCookies("remember-me");
+        return new BCryptPasswordEncoder();
+    };
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//            http.csrf().disable() .authorizeRequests().anyRequest()
+//                .authenticated() .and()
+//                .formLogin()
+//                .and()
+//                .rememberMe()
+//                .and() .logout() .logoutUrl("/logout")
+//                .logoutSuccessUrl("/login") .deleteCookies("remember-me");
+//    }
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
     }
 }

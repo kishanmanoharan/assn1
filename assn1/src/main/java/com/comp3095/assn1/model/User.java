@@ -30,7 +30,6 @@ public class User {
         this.password = password;
     }
 
-
     public Integer getId() {
         return id;
     }
@@ -42,16 +41,14 @@ public class User {
     }
 
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) { this.username = username; }
     public void setPassword(String password) {
         this.password = password;
     }
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
-    public void addRecipes(Recipe recipe) {
-        this.recipes.add(recipe);
-    }
+    public void addRecipes(Recipe recipe) { this.recipes.add(recipe); }
+    public void deleteRecipes(Recipe recipe) { this.recipes.remove(recipe); }
 }
+

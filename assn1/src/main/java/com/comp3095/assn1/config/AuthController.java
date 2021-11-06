@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AuthController {
     @GetMapping("/")
     public String home() {
-        return "account/index";
+        return "redirect:/signin";
     }
 }
