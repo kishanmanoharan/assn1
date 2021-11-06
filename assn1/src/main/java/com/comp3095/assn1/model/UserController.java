@@ -27,20 +27,19 @@ public class UserController {
     @GetMapping("/signin")
     public String getSignIn(Model model) {
         model.addAttribute(new User());
+        model.addAttribute("error", false);
         return "account/signin";
     }
     @PostMapping("/signin")
-    public String postSignIn(User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "account/signin";
-        }
-        else {
+    public String postSignIn(User user, BindingResult result, Model model) {
+        if (!result.hasErrors()) {
             User dbUser = userRepository.findUserByUsernameAndPassword(user.getUsername(), user.getPassword());
             if (dbUser != null) {
                 return "redirect:/" + dbUser.getId();
             }
-            return "redirect:/signin";
         }
+        model.addAttribute("error", true);
+        return "account/signin";
     }
 
     @GetMapping("/{userId}")
@@ -60,17 +59,19 @@ public class UserController {
     @GetMapping("/signup")
     public String getSignUp(Model model) {
         model.addAttribute(new User());
+        model.addAttribute("error", false);
         return "account/signup";
     }
     @PostMapping("/signup")
-    public String postSignUp(User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return "account/signup";
+    public String postSignUp(User user, BindingResult result, Model model) {
+        if (!result.hasErrors()) {
+            if (userRepository.findByUsername(user.getUsername()) == null) {
+                userRepository.save(user);
+                return "redirect:/signin";
+            }
+            model.addAttribute("error", true);
         }
-        else {
-            userRepository.save(user);
-            return "redirect:/signin";
-        }
+        return "account/signup";
     }
 
     @GetMapping("/{userId}/newrecipe")

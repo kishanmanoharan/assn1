@@ -22,6 +22,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Recipe> recipes = new HashSet<Recipe>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Meal> meals = new HashSet<Meal>();
+
     @ManyToMany()
     private Set<Recipe> favourites = new HashSet<Recipe>();
 
