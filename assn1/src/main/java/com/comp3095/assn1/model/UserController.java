@@ -1,3 +1,12 @@
+// -----------------------------------
+//  Project: Recipes App
+//  Assignment: Assignment 1
+//  Author: Kishan Manoharan, Jeff Mcilveen
+//  Student numbers: 101266708, 100681357
+//  Date: 11/07/2021
+//  Description: Main Controller for routing
+//------------------------------------
+
 package com.comp3095.assn1.model;
 import com.comp3095.assn1.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,11 +215,11 @@ public class UserController {
      }
 
 //    Used ONLY for testing
-//    @GetMapping("/info")
-//    public String getInfo(Model model) {
-//        model.addAttribute("users", userRepository.findAll());
-//        model.addAttribute("recipes", recipeRepository.findAll());
-//        model.addAttribute("meals", mealRepository.findAll());
-//        return "account/info";
-//    }
+    @GetMapping("/info")
+    public String getInfo(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("recipes", recipeRepository.findAll());
+        model.addAttribute("meals", mealRepository.findAll());
+        return "account/info";
+    }
 }

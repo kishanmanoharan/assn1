@@ -1,3 +1,12 @@
+// -----------------------------------
+//  Project: Recipes App
+//  Assignment: Assignment 1
+//  Author: Kishan Manoharan, Jeff Mcilveen
+//  Student numbers: 101266708, 100681357
+//  Date: 11/07/2021
+//  Description: Main Application
+//------------------------------------
+
 package com.comp3095.assn1;
 
 import com.comp3095.assn1.model.Recipe;

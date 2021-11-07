@@ -1,6 +1,13 @@
+// -----------------------------------
+//  Project: Recipes App
+//  Assignment: Assignment 1
+//  Author: Kishan Manoharan, Jeff Mcilveen
+//  Student numbers: 101266708, 100681357
+//  Date: 11/07/2021
+//  Description: User Object
+//------------------------------------
+
 package com.comp3095.assn1.model;
-
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
