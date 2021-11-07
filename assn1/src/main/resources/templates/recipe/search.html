@@ -10,8 +10,14 @@
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{'/'+ ${user.id.toString()}}">Recipes</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{'/'+ ${user.id.toString()}}">Home</a>
+            </li>
+        </ul>
         <form class="d-flex">
-            <a th:href="@{'/'}" class="btn btn-sm btn-outline-danger">Sign Out</a>
+            <a th:href="@{'/'+ ${user.id.toString()} + '/search'}" class="btn btn-sm btn-outline-success m-1">Search</a>
+            <a th:href="@{'/'}" class="btn btn-sm btn-outline-danger m-1">Sign Out</a>
         </form>
     </div>
 </nav>
