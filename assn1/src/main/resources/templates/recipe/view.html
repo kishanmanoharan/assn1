@@ -22,10 +22,7 @@
     <br />
     <h5 th:text="*{ingredients}" style="white-space: pre;"></h5>
     <p th:text="*{directions}" style="white-space: pre;"></p>
-
-<!--    <a th:href="@{'/' + ${user.id.toString()}}"><button class="btn btn btn-primary m-1" >Back</button></a>-->
     <div class="d-grid gap-2 d-md-block align-center mx-auto text-cener">
-<!--        <button class="btn btn-lg btn-primary m-1" type="submit" value="Submit">Add</button>-->
         <a th:href="@{'/' + ${userId}}"><button class="btn btn-secondary m-1">Back</button></a>
     </div>
 </div>

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Set;
 
@@ -53,6 +52,8 @@ public class UserController {
             model.addAttribute("recipes", recipes);
             Set<Recipe> favourites = user.getFavourites();
             model.addAttribute("favourites", favourites);
+            Set<Meal> meals = user.getMeals();
+            model.addAttribute("meals", meals);
             return "account/home";
         }
         return "redirect:/signin";
@@ -142,35 +143,32 @@ public class UserController {
         return "redirect:/" + userId.toString();
     }
 
-//    @GetMapping("/{userId}/newmeal/{recipeId}")
-//    public String getNewMeal(@PathVariable("userId") Integer userId, @PathVariable("recipeId") Integer recipeId, User user, Recipe recipe, Model model) {
-//        user = userRepository.getUserById(userId);
-//        recipe = recipeRepository.getRecipesById(recipeId);
-//        model.addAttribute("recipe", recipe);
-//        model.addAttribute("user", user);
-//        model.addAttribute("userId", userId);
-//        model.addAttribute("meal", new Meal());
-//        return "meal/new";
-//    }
-//
-//    @PostMapping("/{userId}/newmeal/{recipeId}")
-//    public String postNewMeal(@PathVariable("userId") Integer userId, @PathVariable("recipeId") Integer recipeId, Meal meal, User user, Recipe recipe, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "recipe/new";
-//        }
-//        else {
-//            user = userRepository.getUserById(userId);
-//            recipe = recipeRepository.getRecipesById(recipeId);
-//            if (user != null && recipe != null) {
-//                meal.setRecipe(recipe.getId());
-//                user.addMeal(meal);
-//                userRepository.save(user);
-//                return "redirect:/" + userId.toString();
-//            }
-//            return "meal/new";
-//        }
-//    }
-//
+    @GetMapping("/{userId}/newmeal/{recipeId}")
+    public String getNewMeal(@PathVariable("userId") Integer userId, @PathVariable("recipeId") Integer recipeId, User user, Recipe recipe, Model model) {
+        user = userRepository.getUserById(userId);
+        recipe = recipeRepository.getRecipesById(recipeId);
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("user", user);
+        model.addAttribute("userId", userId);
+        model.addAttribute("meal", new Meal());
+        return "meal/new";
+    }
+
+    @PostMapping("/{userId}/newmeal/{recipeId}")
+    public String postNewMeal(@PathVariable("userId") Integer userId, @PathVariable("recipeId") Integer recipeId, Meal meal, User user, Recipe recipe, BindingResult result) {
+        if (!result.hasErrors()) {
+            user = userRepository.getUserById(userId);
+            recipe = recipeRepository.getRecipesById(recipeId);
+            if (user != null && recipe != null) {
+                meal.setRecipe(recipe);
+                meal.setUser(user);
+                mealRepository.save(meal);
+                return "redirect:/" + userId.toString();
+            }
+        }
+        return "meal/new";
+    }
+
 //    @RequestMapping(value = "/{userId}/deletemeal/{mealId}", method = RequestMethod.POST)
 //    public String postDeleteMeal(@PathVariable("userId") Integer userId, @PathVariable("mealId") Integer mealId, User user, Model model) {
 //        user = userRepository.getUserById(userId);
@@ -212,6 +210,7 @@ public class UserController {
 //    public String getInfo(Model model) {
 //        model.addAttribute("users", userRepository.findAll());
 //        model.addAttribute("recipes", recipeRepository.findAll());
+//        model.addAttribute("meals", mealRepository.findAll());
 //        return "account/info";
 //    }
 }

@@ -6,5 +6,5 @@ public interface MealRepository extends CrudRepository<Meal, Integer> {
 
     Meal getMealById(Integer id);
 
-//    Meal findmealById(Integer id);
+    Meal findMealById(Integer id);
 }

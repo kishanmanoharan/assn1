@@ -23,9 +23,9 @@
     <tr>
         <th>Id</th>
         <th>Name</th>
-<!--        <th>Ingredients</th>-->
-<!--        <th>Directions</th>-->
-<!--        <th>User</th>-->
+        <th>Ingredients</th>
+        <th>Directions</th>
+        <th>User</th>
     </tr>
     <tr th:each="recipe : ${recipes}">
         <td><p th:text="*{recipe.id}"></p></td>
@@ -33,6 +33,17 @@
         <td><p th:text="*{recipe.ingredients}"></p></td>
         <td><p th:text="*{recipe.directions}"></p></td>
         <td><p th:text="*{recipe.user.username}"></p></td>
+    </tr>
+</table>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="meal : ${meals}">
+        <td><p th:text="*{meal.id}"></p></td>
+        <td><p th:text="*{meal.date}"></p></td>
     </tr>
 </table>
 </body>

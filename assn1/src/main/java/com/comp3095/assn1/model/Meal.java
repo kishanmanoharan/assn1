@@ -1,13 +1,7 @@
 package com.comp3095.assn1.model;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.time.DateTimeException;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "meals")
@@ -16,23 +10,32 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
-    private String date;
+    @OneToOne
+    private Recipe recipe;
 
-    private int recipeId;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
+    public Meal() { this.date = LocalDate.now(); };
 
-    public Meal() {};
-
-    public Meal(String date, User user, Integer recipeId) {
+    public Meal(LocalDate date, User user, Recipe recipe) {
         this.date = date;
-        this.recipeId = recipeId;
+        this.recipe = recipe;
     }
 
     public Integer getId() { return id; }
-    public String getDate() { return date; }
-    public Integer getRecipe() { return recipeId; }
+    public LocalDate getDate() { return date; }
+    public Recipe getRecipe() { return recipe; }
+    public User getUser() { return this.user; }
 
-    public void setDate(String date) { this.date = date; }
-    public void setRecipe(Integer recipe) { this.recipeId = recipeId; }
+    public void setDate(LocalDate date) { this.date = date; }
+    public void setRecipe(Recipe recipe) { this.recipe = recipe; }
+    public void setUser(User user) { this.user = user; }
+
 }
+
+
